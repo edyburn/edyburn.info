@@ -1,0 +1,54 @@
+/*
+Minimalist CSS reset inspired by:
+- https://www.joshwcomeau.com/css/custom-css-reset/
+- https://getbootstrap.com/docs/5.3/content/reboot/
+*/
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  line-height: var(--base-line-height);
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: var(--heading-margin-bottom);
+  line-height: var(--heading-line-height);
+}
+
+p,
+ol,
+ul,
+dl {
+  margin-top: 0;
+  margin-bottom: var(--paragraph-margin-bottom);
+}
+
+/* svg is used for icons, so don't globally treat it as block  */
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+hr {
+  color: inherit;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}

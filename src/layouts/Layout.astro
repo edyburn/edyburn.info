@@ -1,51 +1,128 @@
 ---
-interface Props {
-	title: string;
-}
+import type { MarkdownLayoutProps } from "astro";
 
-const { title } = Astro.props;
+import "../css/reset.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface UnpackedProps {
+  title: string;
+  description?: string;
+}
+type Props = UnpackedProps | MarkdownLayoutProps<UnpackedProps>;
+
+// For markdown files, pull props from the frontmatter
+const { title, description } =
+  "frontmatter" in Astro.props ? Astro.props.frontmatter : Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Keith Edyburn - {title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>
+
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  @font-face {
+    font-family: "Inter";
+    src: url("/fonts/Inter-regular-latin.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  :root {
+    /* Color spectrum from https://colorbrewer2.org */
+    --red-4: #67001f;
+    --red-3: #b2182b;
+    --red-2: #d6604d;
+    --red-1: #f4a582;
+    --red-0: #fddbc7;
+    --blue-0: #d1e5f0;
+    --blue-1: #92c5de;
+    --blue-2: #4393c3;
+    --blue-3: #2166ac;
+    --blue-4: #053061;
+    /* Shades of gray from https://getbootstrap.com (v5) */
+    --white: #fff;
+    --gray-0: #f8f9fa;
+    --gray-1: #dee2e6;
+    --gray-2: #adb5bd;
+    --gray-3: #495057;
+    --gray-4: #212529;
+    --black: #000;
+
+    --link-color: var(--blue-4);
+    --link-hover-color: var(--blue-3);
+
+    --selection-color: var(--white);
+    --selection-bg: var(--red-2);
+
+    --text-color: var(--gray-4);
+    --text-secondary-color: var(--gray-3);
+
+    --btn-color: var(--blue-0);
+    --btn-bg: var(--blue-3);
+    --btn-hover-bg: var(--blue-4);
+
+    --base-line-height: 1.5;
+    --heading-line-height: 1.2;
+
+    --heading-margin-bottom: 0.5rem;
+    --paragraph-margin-bottom: 0.5rem;
+  }
+
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background: var(--blue-0);
+    color: var(--text-color);
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: min(70ch, 100%);
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-color);
+  }
+
+  a {
+    color: var(--link-color);
+
+    &:hover {
+      color: var(--link-hover-color);
+    }
+  }
+
+  .btn {
+    color: var(--btn-color);
+    background: var(--btn-bg);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+
+    &:hover {
+      background: var(--btn-hover-bg);
+    }
+
+    &:not(:disabled) {
+      cursor: pointer;
+    }
+  }
 </style>
