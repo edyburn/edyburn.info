@@ -1,42 +1,39 @@
-# Astro Starter Kit: Basics
+# Keith Edyburn's personal website
 
-```sh
-npm create astro@latest -- --template basics
+The code behind [keith.edyburn.info](https://keith.edyburn.info).
+
+Built with [Astro](https://astro.build/) and
+[TypeScript](https://www.typescriptlang.org/).
+
+## Setup
+
+This project uses a [dev container](https://containers.dev/) to provide a
+consistent development environment. Using the dev container with [VS
+Code](https://code.visualstudio.com/docs/devcontainers/containers) is
+recommended since it will automatically install the necessary extensions and
+configure some settings.
+
+## Deploying
+
+1. Run the build:
+
+```bash
+npm run build
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+2. Review the built files:
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+3. Upload the files (assumes an appropriate `.env` file exists):
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```bash
+source .env && rsync -r dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
+## Commands
 
 All commands are run from the root of the project, from a terminal:
 
@@ -49,6 +46,32 @@ All commands are run from the root of the project, from a terminal:
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## Why Astro?
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The earlier version of this site used
+[Frozen-Flask](https://frozen-flask.readthedocs.io/en/latest/) to generate
+static pages from [Jinja2](https://palletsprojects.com/p/jinja/) HTML templates,
+but there were a few things I wanted to change:
+
+- Use markdown for most content to simplify editing
+- Use component composition instead of using template includes/extends and macros
+- Utilize typechecking, linting, and automatic formatting
+- Have the option to introduce client-side UI frameworks, if necessary
+- Experiment with something new after using Flask for more than a decade
+
+Astro checked all of those boxes.
+
+After using Astro for this site, I have a few thoughts about it:
+
+- Hot module replacement from Vite is great for productivity
+- The docs are comprehensive and address many common issues
+- Content collections seem helpful for ensuring consistency
+- Due to using JSX/React for so long, Astro's syntax had a few surprises:
+  - Whitespace at tag boundaries can sometimes show up in the HTML
+  - The separation of the script and template parts of components
+
+## Links
+
+- [Astro docs](https://docs.astro.build)
+- [Bootstrap icon set](https://icon-sets.iconify.design/bi/?attribution=false)
+  (seemed relatively comprehensive and doesn't require attribution)
