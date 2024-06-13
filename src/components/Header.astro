@@ -1,0 +1,109 @@
+---
+import AccountLinks from "./AccountLinks.astro";
+
+const navItems = [
+  { label: "Résumé", href: "/resume" },
+  { label: "Portfolio", href: "/portfolio" },
+  { label: "Publications", href: "/publications" },
+];
+function isHrefActive(href: string) {
+  const { pathname } = Astro.url;
+  return pathname === href || (href !== "/" && pathname.startsWith(href));
+}
+---
+
+<header>
+  <a href="/" class="name">
+    Keith Edyburn<small class="xs"> (he/him)</small>
+    <br />
+    <small>Software Engineer</small>
+  </a>
+
+  <div class="account-links">
+    <AccountLinks />
+  </div>
+
+  <ul class="nav print-hidden">
+    {
+      navItems.map(({ label, href }) => (
+        <li>
+          <a href={href} class={isHrefActive(href) ? "active" : null}>
+            {label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</header>
+
+<style>
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+  }
+
+  .name {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: var(--heading-line-height);
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: inherit;
+    }
+
+    & small {
+      font-size: 1.5rem;
+      font-weight: normal;
+      color: var(--text-secondary-color);
+    }
+
+    & .xs {
+      font-size: 1.25rem;
+    }
+  }
+
+  .account-links {
+    font-size: 1.5rem;
+    line-height: 1;
+
+    @media print {
+      display: flex;
+      flex-direction: column;
+      text-align: right;
+      font-size: inherit;
+      line-height: inherit;
+    }
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    line-height: 1;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+
+    & a {
+      display: block;
+      padding: 0.3rem 0;
+      text-decoration: none;
+      border-bottom: 0.125rem solid transparent;
+
+      &:hover,
+      &:focus {
+        border-bottom-color: currentColor;
+      }
+
+      &.active {
+        color: var(--text-secondary-color);
+        font-weight: bold;
+        border-bottom-color: currentColor;
+      }
+    }
+  }
+</style>
