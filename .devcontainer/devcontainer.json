@@ -3,20 +3,39 @@
 {
   "name": "edyburn.info",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm"
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-22-bookworm",
 
   // Features to add to the dev container. More info: https://containers.dev/features.
-  // "features": {},
+  "features": {
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+      // These aren't _necessary_, but I use them frequently...
+      "packages": "vim,tig"
+    }
+  },
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  // "postCreateCommand": "yarn install",
+  "postCreateCommand": "npm install",
+
+  // Tell git that the directory is safe to avoid errors from "dubious
+  // ownership". More info:
+  // https://www.kenmuse.com/blog/avoiding-dubious-ownership-in-dev-containers/
+  "postStartCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}",
 
   // Configure tool-specific properties.
-  // "customizations": {},
-
+  "customizations": {
+    "vscode": {
+      // The image already includes the ESLint extension
+      "extensions": [
+        "astro-build.astro-vscode",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker",
+        "unifiedjs.vscode-mdx"
+      ]
+    }
+  }
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
   // "remoteUser": "root"
 }
