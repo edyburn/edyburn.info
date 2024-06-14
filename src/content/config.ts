@@ -27,4 +27,20 @@ export const collections = {
       // TODO: Add list of skills?
     }),
   }),
+  projects: defineCollection({
+    type: "content",
+    schema: ({ image }) =>
+      z.object({
+        category: z.union([z.literal("software"), z.literal("mech_eng")]),
+        image: z
+          .object({
+            path: image(),
+            alt: z.string(),
+          })
+          .optional(),
+        // Date for sorting purposes (possibly approximate)
+        date: z.string().date(),
+        // TODO: Add list of tags/skills?
+      }),
+  }),
 };
