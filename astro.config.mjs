@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 
+import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 import remarkToc from "remark-toc";
 
@@ -7,7 +8,7 @@ import remarkToc from "remark-toc";
 export default defineConfig({
   server: { host: true },
   site: "https://keith.edyburn.info",
-  integrations: [icon()],
+  integrations: [icon(), mdx()],
   markdown: {
     remarkPlugins: [remarkToc],
   },
