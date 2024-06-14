@@ -1,0 +1,59 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import Project from "../components/Project.astro";
+
+const projects = await getCollection("projects");
+// Sort descending (reverse a and b)
+projects.sort((a, b) => b.data.date.localeCompare(a.data.date));
+const groups = Object.groupBy(projects, (p) => p.data.category);
+---
+
+<Layout title="Portfolio">
+  <h1>Project Portfolio</h1>
+
+  <h2>Software</h2>
+  <div class="project-group">
+    {groups.software?.map((p) => <Project project={p} />)}
+  </div>
+
+  <button type="button" class="btn print-hidden" id="me-button"
+    >View mechanical engineering projects</button
+  >
+
+  <div id="me-projects">
+    <h2>Mechanical Engineering</h2>
+    <div class="project-group">
+      {groups.mech_eng?.map((p) => <Project project={p} />)}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .project-group {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  #me-button {
+    display: block;
+    margin: 0 auto 1rem;
+  }
+
+  #me-projects {
+    display: none;
+  }
+</style>
+
+<script>
+  const btn = document.getElementById("me-button");
+  btn?.addEventListener("click", () => {
+    btn.style.display = "none";
+    const meSection = document.getElementById("me-projects");
+    if (meSection) {
+      meSection.style.display = "block";
+    }
+  });
+</script>
