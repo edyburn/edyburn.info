@@ -1,0 +1,129 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { formatShortDate } from "../utils";
+
+interface Props {
+  job: CollectionEntry<"jobs">;
+}
+
+const { job } = Astro.props;
+const { positions } = job.data;
+// Sort descending (reverse a and b)
+positions.sort((a, b) => b.startDate.localeCompare(a.startDate));
+const { Content } = await job.render();
+---
+
+<section>
+  <div class="company-info">
+    <div class="company-name">
+      {
+        job.data.url ? (
+          <>
+            {/* prettier-ignore */}
+            <a href={job.data.url} target="_blank">{job.data.companyName}</a>{" "}
+            <Icon
+              name="bi:box-arrow-up-right"
+              class="print-hidden"
+              title="External link"
+            />
+          </>
+        ) : (
+          job.data.companyName
+        )
+      }
+    </div>
+
+    {job.data.note && <div class="company-note">{job.data.note}</div>}
+
+    <div class="location">{job.data.location}</div>
+  </div>
+
+  <ul class="positions">
+    {
+      positions.map((position) => (
+        <li>
+          <span>
+            <span class="position-title">{position.title}</span>{" "}
+            {position.classification && (
+              <span class="position-classification">
+                ({position.classification})
+              </span>
+            )}{" "}
+          </span>
+          <span class="position-dates">
+            {formatShortDate(position.startDate)} -{" "}
+            {formatShortDate(position.endDate)}
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="content">
+    <Content />
+  </div>
+</section>
+
+<style>
+  .company-info {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "name location"
+      "note .";
+
+    @media (max-width: 550px) {
+      display: block;
+    }
+  }
+
+  .company-name {
+    grid-area: name;
+    font-weight: bold;
+    font-size: 1.2rem;
+
+    & [data-icon] {
+      color: var(--text-secondary-color);
+    }
+
+    @media print {
+      font-size: 1.1rem;
+    }
+  }
+
+  .company-note {
+    grid-area: note;
+  }
+
+  .location {
+    grid-area: location;
+    text-align: right;
+
+    @media (max-width: 550px) {
+      text-align: left;
+    }
+  }
+
+  .positions {
+    padding-left: 0;
+    list-style: none;
+  }
+
+  .positions li {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0 1rem;
+  }
+
+  .position-title {
+    font-weight: bold;
+  }
+
+  .company-note,
+  .position-classification {
+    color: var(--text-secondary-color);
+    font-size: 0.875rem;
+  }
+</style>
