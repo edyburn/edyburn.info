@@ -27,8 +27,9 @@ const { title, description } =
     <title>Keith Edyburn - {title}</title>
   </head>
   <body>
+    <a id="skip-main" href="#main">Skip to main content</a>
     <Header />
-    <main>
+    <main id="main">
       <slot />
     </main>
     <Footer />
@@ -107,6 +108,25 @@ const { title, description } =
 
     &:hover {
       color: var(--link-hover-color);
+    }
+  }
+
+  #skip-main {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: -20rem;
+    right: 0;
+    left: 0;
+    padding: 1rem;
+    text-align: center;
+    text-decoration: none;
+    background: var(--white);
+    z-index: 10;
+
+    /* Move the skip link to visible area when focused  */
+    &:focus {
+      top: 0;
     }
   }
 
