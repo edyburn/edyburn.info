@@ -1,0 +1,52 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<a
+  href="mailto:keith [at] edyburn [dot] info"
+  data-print-href="keith [at] edyburn [dot] info"
+  aria-label="email"
+  data-mangled-email
+>
+  <Icon name="bi:envelope-fill" title="keith [at] edyburn [dot] info" />
+</a>
+<a
+  href="https://github.com/edyburn"
+  data-print-href="github.com/edyburn"
+  target="_blank"
+  aria-label="GitHub"
+>
+  <Icon name="bi:github" title="GitHub profile" />
+</a>
+<a
+  href="https://www.linkedin.com/in/keith-edyburn"
+  data-print-href="linkedin.com/in/keith-edyburn"
+  target="_blank"
+  aria-label="LinkedIn"
+>
+  <Icon name="bi:linkedin" title="LinkedIn profile" />
+</a>
+
+<style>
+  a {
+    text-decoration: none;
+  }
+</style>
+
+<script>
+  // The email address is mangled in the HTML to try to cut down on spam, but
+  // unmangle it with JS for the convenience of real users
+  document
+    .querySelectorAll<HTMLAnchorElement>("a[data-mangled-email]")
+    .forEach((el) => {
+      el.href = unmangle(el.href);
+      if (el.dataset.printHref)
+        el.dataset.printHref = unmangle(el.dataset.printHref);
+      const titleEl = el.querySelector("title");
+      if (titleEl) titleEl.innerHTML = unmangle(titleEl.innerHTML);
+    });
+
+  function unmangle(value: string) {
+    return value.replace(" [at] ", "@").replace(" [dot] ", ".");
+  }
+</script>
