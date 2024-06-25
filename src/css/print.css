@@ -1,0 +1,74 @@
+@media print {
+  /* Print in black and white, without shadows */
+  * {
+    background: transparent !important;
+    color: var(--black) !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  /* Remove underlines on anchors and abbreviations */
+  a,
+  a:visited,
+  abbr {
+    text-decoration: none;
+  }
+
+  /* Add the `data-print-href` attribute to show the href of links when
+    printing. Pass a value to override the default formatting of wrapping the
+    href in parens. */
+  a[data-print-href]::after {
+    content: attr(data-print-href);
+  }
+  a[data-print-href=""]::after {
+    content: " (" attr(href) ")";
+  }
+
+  /* Show expanded abbreviations */
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /* Add the `print-hidden` class to hide an element when printing */
+  .print-hidden {
+    display: none !important;
+  }
+
+  /* Increase specificity to override body rules in Layout component */
+  html body {
+    /* Disable grid layout */
+    display: block;
+    /* Reduce font size */
+    font-size: 11pt;
+    /* Reduce line height */
+    --base-line-height: 1.2;
+    --heading-line-height: 1.1;
+    --heading-margin-bottom: 0.25rem;
+    /* --paragraph-margin-bottom: 0.5rem; */
+    /* Remove extra body padding */
+    padding: 0;
+  }
+
+  /* Try to avoid single-line orphans and widows */
+  p,
+  li {
+    orphans: 2;
+    widows: 2;
+  }
+
+  /* Try to avoid page breaks following a heading */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    break-after: avoid;
+  }
+
+  /* Hide the table of contents elements */
+  #contents,
+  #contents + ul {
+    display: none;
+  }
+}
