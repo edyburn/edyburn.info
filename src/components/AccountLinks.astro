@@ -11,6 +11,14 @@ import { Icon } from "astro-icon/components";
   <Icon name="bi:envelope-fill" title="keith [at] edyburn [dot] info" />
 </a>
 <a
+  href="https://keith.edyburn.info"
+  data-print-href="keith.edyburn.info"
+  id="website-link"
+  aria-label="website"
+>
+  <Icon name="bi:globe2" title="Website" />
+</a>
+<a
   href="https://github.com/edyburn"
   data-print-href="github.com/edyburn"
   target="_blank"
@@ -30,6 +38,14 @@ import { Icon } from "astro-icon/components";
 <style>
   a {
     text-decoration: none;
+  }
+
+  #website-link {
+    display: none;
+
+    @media print {
+      display: initial;
+    }
   }
 </style>
 
