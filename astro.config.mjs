@@ -8,6 +8,9 @@ import remarkToc from "remark-toc";
 export default defineConfig({
   server: { host: true },
   site: "https://keith.edyburn.info",
+  build: {
+    assets: "assets",
+  },
   integrations: [icon(), mdx()],
   markdown: {
     remarkPlugins: [remarkToc],
