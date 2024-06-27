@@ -40,6 +40,8 @@ img,
 picture {
   display: block;
   max-width: 100%;
+  /* Auto-scale height to preserve aspect ratio when max-width rule is active */
+  height: auto;
 }
 
 hr {
