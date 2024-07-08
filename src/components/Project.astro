@@ -15,7 +15,7 @@ const { Content } = await project.render();
   image ? (
     <Image src={image.path} alt={image.alt} width={200} densities={[1, 2]} />
   ) : (
-    <div />
+    <div class="no-image">Image unavailable</div>
   )
 }
 

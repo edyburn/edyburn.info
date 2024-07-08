@@ -35,6 +35,13 @@ const groups = Object.groupBy(projects, (p) => p.data.category);
     grid-template-columns: auto auto;
     gap: 1rem;
     margin-bottom: 2rem;
+
+    & :global(.no-image) {
+      font-size: 0.875rem;
+      color: var(--text-secondary-color);
+      justify-self: center;
+      align-self: center;
+    }
   }
 
   #me-button {
