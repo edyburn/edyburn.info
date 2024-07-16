@@ -1,5 +1,8 @@
 ---
 category: software
+image:
+  path: ./asi-es-question-form.png
+  alt: "Screenshot of the question creation form in the ASÍ ES webapp"
 date: "2017-10-01"
 aka: project hybrid
 ---
