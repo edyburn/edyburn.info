@@ -5,6 +5,7 @@ initialStartDate: "2000-01-01"
 positions: []
 ---
 
+- [North American Registry of Midwives](https://narm.org/) (2024)
 - [Don Johnston Incorporated](http://www.donjohnston.com/) (2013)
 - Human Ability Designs<!-- http://www.humanabilitydesigns.com/ --> (2012-2013,
   2020-2022)
