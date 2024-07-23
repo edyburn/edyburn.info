@@ -30,7 +30,7 @@ npm run preview
 3. Upload the files (assumes an appropriate `.env` file exists):
 
 ```bash
-source .env && rsync -r dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
+npm run deploy
 ```
 
 ## Commands
