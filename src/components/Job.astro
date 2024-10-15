@@ -51,9 +51,9 @@ const { Content } = await job.render();
               </span>
             )}{" "}
           </span>
+          {/* prettier-ignore */}
           <span class="position-dates">
-            {formatShortDate(position.startDate)} -{" "}
-            {formatShortDate(position.endDate)}
+            {formatShortDate(position.startDate)}&ndash;{formatShortDate(position.endDate)}
           </span>
         </li>
       ))
