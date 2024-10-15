@@ -10,6 +10,7 @@
     "preview": "astro preview",
     "deploy": "eval $(cat .env) && rsync -rv dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH",
     "format": "prettier ./src --write",
+    "lint": "eslint ./src",
     "astro": "astro"
   },
   "dependencies": {
