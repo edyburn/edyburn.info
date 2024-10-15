@@ -5,7 +5,7 @@ import Job from "./Job.astro";
 const jobs = await getCollection("jobs");
 // Sort descending (reverse a and b)
 jobs.sort((a, b) =>
-  b.data.initialStartDate.localeCompare(a.data.initialStartDate)
+  b.data.initialStartDate.localeCompare(a.data.initialStartDate),
 );
 ---
 

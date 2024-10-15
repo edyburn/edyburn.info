@@ -21,7 +21,7 @@ export const collections = {
           // The "day" part of these dates are not used
           startDate: z.string().date(),
           endDate: z.union([z.string().date(), z.literal("present")]),
-        })
+        }),
       ),
       // TODO: Add a brief description of the company?
       // TODO: Add list of skills?
