@@ -9,6 +9,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "deploy": "eval $(cat .env) && rsync -rv dist/ $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH",
+    "format": "prettier ./src --write",
     "astro": "astro"
   },
   "dependencies": {
@@ -27,6 +28,8 @@
     "eslint": "^8.57.0",
     "eslint-plugin-astro": "^1.2.2",
     "eslint-plugin-jsx-a11y": "^6.8.0",
+    "prettier": "^3.3.3",
+    "prettier-plugin-astro": "^0.14.1",
     "typescript-eslint": "^7.13.0"
   }
 }
