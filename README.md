@@ -7,11 +7,25 @@ Built with [Astro](https://astro.build/) and
 
 ## Setup
 
-This project uses a [dev container](https://containers.dev/) to provide a
-consistent development environment. Using the dev container with [VS
-Code](https://code.visualstudio.com/docs/devcontainers/containers) is
-recommended since it will automatically install the necessary extensions and
-configure some settings.
+This project offers two options that attempt to provide a repeatable and
+consistent development environment:
+
+1. A [dev container](https://containers.dev/). Requires Docker (or compliant
+   CLI) and a [tool supporting dev
+   containers](https://containers.dev/supporting), such as [Visual Studio Code
+   with the Dev Containers
+   extension](https://code.visualstudio.com/docs/devcontainers/containers). This
+   will create a Docker container running Debian with the packages needed for
+   development. If using VS Code, it will automatically install the extensions
+   specified in the config.
+
+2. A [nix](https://nixos.org/) flake. Requires the nix package manager, and
+   optionally [direnv](https://direnv.net/). If using direnv, run `direnv allow`
+   to trust the directory (only necessary once). Subsequently, entering the
+   directory will load the necessary packages into the current shell
+   environment. If not using direnv, run `nix develop` to get a bash shell with
+   the necessary packages. If using VS Code, you will need to manually install
+   the extensions recommended by the workspace (possibly plus `mkhl.direnv`).
 
 ## Deploying
 
