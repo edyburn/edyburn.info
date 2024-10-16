@@ -59,6 +59,8 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm run format`          | Format the `./src/` tree with prettier           |
+| `npm run lint`            | Lint the `./src` tree with eslint                |
 
 ## Why Astro?
 
