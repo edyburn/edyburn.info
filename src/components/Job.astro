@@ -1,5 +1,5 @@
 ---
-import type { CollectionEntry } from "astro:content";
+import { type CollectionEntry, render } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { formatShortDate } from "../utils";
 
@@ -11,7 +11,7 @@ const { job } = Astro.props;
 const { positions } = job.data;
 // Sort descending (reverse a and b)
 positions.sort((a, b) => b.startDate.localeCompare(a.startDate));
-const { Content } = await job.render();
+const { Content } = await render(job);
 ---
 
 <section>

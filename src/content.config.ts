@@ -1,8 +1,9 @@
 import { defineCollection, z } from "astro:content";
+import { glob } from "astro/loaders";
 
 export const collections = {
   jobs: defineCollection({
-    type: "content",
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/jobs" }),
     schema: z.object({
       companyName: z.string(),
       aka: z.string().optional(),
@@ -28,7 +29,10 @@ export const collections = {
     }),
   }),
   projects: defineCollection({
-    type: "content",
+    loader: glob({
+      pattern: "**/[^_]*.{md,mdx}",
+      base: "./src/content/projects",
+    }),
     schema: ({ image }) =>
       z.object({
         category: z.union([z.literal("software"), z.literal("mech_eng")]),

@@ -8,7 +8,4 @@ export default [
   ...tsEslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   ...eslintPluginAstro.configs["jsx-a11y-recommended"],
-  {
-    ignores: ["src/env.d.ts"],
-  },
 ];
